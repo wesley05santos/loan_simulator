@@ -1,0 +1,20 @@
+<%= form_with model: @loan do |form| %>
+  <div>
+    <%= form.label :requested_amount, 'Valor solicitado: ' %>
+    <%= form.text_field :requested_amount %>
+  </div>
+
+  <div>
+    <%= form.label :qtd_payments, 'Quantidade de pagamentos: ' %>
+    <%= form.number_field :qtd_payments %>
+  </div>
+
+  <div>
+    <%= form.label :interest_rate, 'Taxa de Juros' %>
+    <%= form.text_field :interest_rate %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

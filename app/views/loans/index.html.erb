@@ -1,0 +1,13 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Solicitações de Empréstimos</h1>
+
+<div>
+  <% @loans.each do |loan| %>
+    <p>
+      <%= link_to "Detalhes", loan %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "Nova Solicitação de Empréstimo", new_loan_path %>

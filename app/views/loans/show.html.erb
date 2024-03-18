@@ -1,0 +1,24 @@
+<p style="color: green"><%= notice %></p>
+
+<p>
+  Código: <%= @loan.id %>
+</p>
+
+<p>
+  Valor Solicitado: <%= @loan.requested_amount %>
+</p>
+<p>
+  Parcelas: <%= @loan.qtd_payments %>
+</p>
+<p>
+  Taxa Juros: <%= @loan.interest_rate %>
+</p>
+
+
+
+<div>
+  <%= link_to "Editar", edit_loan_path(@loan) %> |
+  <%= link_to "Voltar", loans_path %>
+
+  <%= button_to "Apagar", @loan, method: :delete %>
+</div>
