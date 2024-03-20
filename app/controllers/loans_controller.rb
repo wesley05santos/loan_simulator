@@ -15,10 +15,13 @@ class LoansController < ApplicationController
   def edit; end
 
   def create
-    @loan = Loans::CalculateValuesLoanRequestService.call(user_id: current_user.id, **loan_params)
-    return redirect_to @loan if @loan.persisted?
+    @loan = Loan.new(loan_params)
+    @loan.valid?
+    return render :new if loan_params.values.any?(&:blank?)
 
-    render :new
+    Loans::GenerateLoanSimulationJob.perform_later(user_id: current_user.id, **loan_params)
+    sleep(3)
+    redirect_to loans_path
   end
 
   def update
