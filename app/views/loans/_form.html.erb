@@ -1,6 +1,9 @@
-<%= form_with model: @loan do |form| %>
+<%= render 'shared/errors', object: @loan %>
+
+
+<%= form_with model: @loan, data: { turbo: false } do |form| %>
   <div>
-    <%= form.label :requested_amount, 'Valor solicitado: ' %>
+    <%= form.label :requested_amount, 'Valor solicitado: R$' %>
     <%= form.text_field :requested_amount %>
   </div>
 
@@ -10,7 +13,7 @@
   </div>
 
   <div>
-    <%= form.label :interest_rate, 'Taxa de Juros' %>
+    <%= form.label :interest_rate, 'Taxa de Juros (%)a.m' %>
     <%= form.text_field :interest_rate %>
   </div>
 

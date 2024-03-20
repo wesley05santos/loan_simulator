@@ -4,9 +4,14 @@
 
 <div>
   <% @loans.each do |loan| %>
+
     <p>
+      ID Simulação: <%= loan.id %> |
+      Valor Solicitação: R$ <%= loan.requested_amount %> |
       <%= link_to "Detalhes", loan %>
     </p>
+
+
   <% end %>
 </div>
 

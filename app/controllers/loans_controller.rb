@@ -1,9 +1,9 @@
 class LoansController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_loan, only: %i[ show edit update destroy ]
-  before_create :actual_current_user, only: %i[ create update ]
 
   def index
-    @loans = Loan.all
+    @loans = current_user.loans
   end
 
   def show; end
@@ -15,10 +15,10 @@ class LoansController < ApplicationController
   def edit; end
 
   def create
-    @loan = Loan.new(loan_params)
-    return redirect_to @loan if @loan.save
+    @loan = Loans::CalculateValuesLoanRequestService.call(user_id: current_user.id, **loan_params)
+    return redirect_to @loan if @loan.persisted?
 
-    render :show
+    render :new
   end
 
   def update
@@ -29,15 +29,11 @@ class LoansController < ApplicationController
 
   def destroy
     @loan.destroy!
-    flash[:notice] = 'Produto Deletado com Sucesso!' if @loan.destroy
-    redirect_to products_path
+    flash[:notice] = 'Solicitação Deletada com Sucesso!' if @loan.destroy
+    redirect_to loans_path
   end
 
   private
-    def actual_current_user
-      @loan.user_id = current_user.id
-    end
-
     def set_loan
       @loan = Loan.find(params[:id])
     end

@@ -5,13 +5,16 @@
 </p>
 
 <p>
-  Valor Solicitado: <%= @loan.requested_amount %>
+  Valor Solicitado: R$ <%= @loan.requested_amount %>
 </p>
 <p>
   Parcelas: <%= @loan.qtd_payments %>
 </p>
 <p>
-  Taxa Juros: <%= @loan.interest_rate %>
+  Taxa Juros: <%= @loan.interest_rate %>% a.m
+</p>
+<p>
+  Valor da parcela: R$ <%= @loan.installment_value.round(2) %>
 </p>
 
 
