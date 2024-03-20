@@ -1,24 +1,14 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+```
 
-Things you may want to cover:
+Projeto para estudo em Ruby on Rails
 
-* Ruby version
+Com foco no aprendizado com Services
+e Jobs usando Sidekiq e Redis
 
-* System dependencies
+O projeto consiste em criar um simulador
+de empréstimos, com controle de acesso de usuário.
 
-* Configuration
+```
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
