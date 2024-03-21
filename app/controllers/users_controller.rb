@@ -7,7 +7,6 @@ class UsersController < ApplicationController
 
   def toggle_user_admin
     @user = User.find(params[:id])
-    # @user.update(admin_profile: true)
     @user.toggle!(:admin_profile)
     redirect_to users_path
   end
