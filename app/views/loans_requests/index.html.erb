@@ -1,0 +1,27 @@
+<h1>Solicitações de Empréstimos</h1>
+
+<table>
+  <thead>
+    <th>ID Usuário</th>
+    <th>Usuário</th>
+    <th>Email</th>
+    <th>Valor Solicitado</th>
+    <th>Detalhar</th>
+  </thead>
+  <tbody>
+    <% @loans.each do |loan| %>
+      <tr>
+        <p>
+          <td><%= current_user.id %></td>
+          <td><%= current_user.email.split('@').first %></td>
+          <td><%= loan.user.email %></td>
+          <td>R$ <%= loan.requested_amount.to_f %></td>
+          <td><%= loan.status.empty? ? 'Aguardando' : loan.status %></td>
+          <td><%= link_to 'Detalhar', loan %></td>
+          <td><%= link_to 'Aprovar', approve_loan_path(id: loan.id) %></td>
+          <td><%= link_to 'Rejeitar', reject_loan_path(id: loan.id) %></td>
+        </p>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

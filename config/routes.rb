@@ -10,5 +10,12 @@ Rails.application.routes.draw do
   # root "posts#index"
   root to: "home#index"
 
+  # get 'loans', to: 'loans#show'
+  get 'approve_loan', to: 'loans_requests#approve_loan'
+  get 'reject_loan', to: 'loans_requests#reject_loan'
+  get 'toggle_user_admin', to: 'users#toggle_user_admin'
+
   resources :loans
+  resources :loans_requests
+  resources :users
 end

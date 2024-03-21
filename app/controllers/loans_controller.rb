@@ -20,7 +20,6 @@ class LoansController < ApplicationController
     return render :new if loan_params.values.any?(&:blank?)
 
     Loans::GenerateLoanSimulationJob.perform_later(user_id: current_user.id, **loan_params)
-    sleep(3)
     redirect_to loans_path
   end
 
