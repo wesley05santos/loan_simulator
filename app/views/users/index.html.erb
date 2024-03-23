@@ -12,7 +12,7 @@
         <p>
           <td><%= user.id %></td>
           <td><%= user.email %></td>
-          <td><%= link_to (user.admin_profile? ? 'To_Standard' : 'To_Admin'), toggle_user_admin_path(id: user.id) %></td>
+          <td><%= link_to (user.admin_profile? ? 'To_Standard' : 'To_Admin'), toggle_user_admin_path(id: user.id), data: { turbo: false } %></td>
         </p>
       </tr>
     <% end %>

@@ -2,6 +2,7 @@
 
 <table>
   <thead>
+    <th>ID Solicitação</th>
     <th>ID Usuário</th>
     <th>Usuário</th>
     <th>Email</th>
@@ -11,16 +12,17 @@
   <tbody>
     <% @loans.each do |loan| %>
       <tr>
-        <p>
-          <td><%= current_user.id %></td>
-          <td><%= current_user.email.split('@').first %></td>
-          <td><%= loan.user.email %></td>
-          <td>R$ <%= loan.requested_amount.to_f %></td>
-          <td><%= loan.status.empty? ? 'Aguardando' : loan.status %></td>
-          <td><%= link_to 'Detalhar', loan, data: { turbo: false } %></td>
+        <td><%= loan.id %></td>
+        <td><%= loan.user.id %></td>
+        <td><%= loan.user.email.split('@').first %></td>
+        <td><%= loan.user.email %></td>
+        <td>R$ <%= loan.requested_amount.to_f %></td>
+        <td><%= loan.status.empty? ? 'Aguardando' : loan.status %></td>
+        <td><%= link_to 'Detalhar', loan, data: { turbo: false } %></td>
+        <% if loan.status.blank? %>
           <td><%= link_to 'Aprovar', approve_loan_path(id: loan.id), data: { turbo: false } %></td>
           <td><%= link_to 'Rejeitar', reject_loan_path(id: loan.id), data: { turbo: false } %></td>
-        </p>
+        <% end %>
       </tr>
     <% end %>
   </tbody>

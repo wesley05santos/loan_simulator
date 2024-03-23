@@ -1,18 +1,13 @@
-<p style="color: green"><%= notice %></p>
-
 <h1>Solicitações de Empréstimos</h1>
 
 <div>
   <% @loans.each do |loan| %>
-
     <p>
       ID Simulação: <%= loan.id %> |
       Valor Solicitação: R$ <%= loan.requested_amount %> |
-      <%= link_to "Detalhes", loan %>
+      <%= link_to "Detalhes", loan, data: { turbo: false } %>
     </p>
-
-
   <% end %>
 </div>
 
-<%= link_to "Nova Solicitação de Empréstimo", new_loan_path %>
+<%= link_to "Nova Solicitação de Empréstimo", new_loan_path, data: { turbo: false } %>

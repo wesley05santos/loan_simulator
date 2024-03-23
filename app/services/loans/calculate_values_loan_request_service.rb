@@ -1,6 +1,6 @@
 class Loans::CalculateValuesLoanRequestService < ApplicationService
   def initialize(*args, **kwargs)
-    @user = User.find(args[:user_id])
+    @user = User.find(kwargs[:user_id])
     @args = kwargs.tap { |hash| hash.delete(:user_id) }
   end
 
