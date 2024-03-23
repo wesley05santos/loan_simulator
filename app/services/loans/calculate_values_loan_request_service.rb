@@ -1,15 +1,7 @@
-class Loans::CalculateValuesLoanRequestService
-  def initialize(**args)
+class Loans::CalculateValuesLoanRequestService < ApplicationService
+  def initialize(*args, **kwargs)
     @user = User.find(args[:user_id])
-    @args = args.tap { |hash| hash.delete(:user_id) }
-  end
-
-  def self.call(args)
-    Loans::CalculateValuesLoanRequestService.new(**args).call
-  end
-
-  def call
-    run
+    @args = kwargs.tap { |hash| hash.delete(:user_id) }
   end
 
   private

@@ -3,7 +3,7 @@ class LoansController < ApplicationController
   before_action :set_loan, only: %i[ show edit update destroy ]
 
   def index
-    @loans = current_user.loans
+    @loans = current_user.loans.order(id: :desc)
   end
 
   def show; end

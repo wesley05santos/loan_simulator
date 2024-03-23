@@ -3,11 +3,12 @@ class LoansRequestsController < ApplicationController
   before_action :authorized_user
 
   def index
-    @loans = Loan.all
+    @loans = Loan.all.order(id: :desc)
   end
 
   def approve_loan
     @loan.update(status: 'approved')
+    Loans::GenerateLoanInstallmentsJob.perform_later(loan_id: @loan.id)
     redirect_to loans_requests_path
   end
 

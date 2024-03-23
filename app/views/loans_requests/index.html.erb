@@ -17,9 +17,9 @@
           <td><%= loan.user.email %></td>
           <td>R$ <%= loan.requested_amount.to_f %></td>
           <td><%= loan.status.empty? ? 'Aguardando' : loan.status %></td>
-          <td><%= link_to 'Detalhar', loan %></td>
-          <td><%= link_to 'Aprovar', approve_loan_path(id: loan.id) %></td>
-          <td><%= link_to 'Rejeitar', reject_loan_path(id: loan.id) %></td>
+          <td><%= link_to 'Detalhar', loan, data: { turbo: false } %></td>
+          <td><%= link_to 'Aprovar', approve_loan_path(id: loan.id), data: { turbo: false } %></td>
+          <td><%= link_to 'Rejeitar', reject_loan_path(id: loan.id), data: { turbo: false } %></td>
         </p>
       </tr>
     <% end %>

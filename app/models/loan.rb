@@ -1,5 +1,6 @@
 class Loan < ApplicationRecord
   belongs_to :user
+  has_many :loan_installment
 
   validates :requested_amount, presence: true
   validates :qtd_payments, presence: true

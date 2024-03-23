@@ -10,9 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_03_21_220112) do
+ActiveRecord::Schema[7.1].define(version: 2024_03_22_214911) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "loan_installments", force: :cascade do |t|
+    t.bigint "loan_id", null: false
+    t.integer "number_of_installment", null: false
+    t.decimal "value_installment", null: false
+    t.boolean "paid", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["loan_id"], name: "index_loan_installments_on_loan_id"
+  end
 
   create_table "loans", force: :cascade do |t|
     t.bigint "user_id", null: false
@@ -39,5 +49,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_21_220112) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "loan_installments", "loans"
   add_foreign_key "loans", "users"
 end
