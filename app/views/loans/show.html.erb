@@ -40,6 +40,8 @@
       <th>Valor da Parcela</th>
       <th>Data de Vencimento</th>
       <th>Status de Pagamento</th>
+      <th>Ações</th>
+      <th>Data do Pagamento</th>
     </thead>
     <tbody>
       <% @loan.loan_installment.each do |installment| %>
@@ -48,6 +50,8 @@
           <td>R$ <%= installment.value_installment.round(2) %></td>
           <td><%= installment.due_date.strftime("%d-%m-%Y") %></td>
           <td><%= installment.paid %></td>
+          <td><%= button_to 'Pagar', pay_installment_path(id: installment.id), method: :put if installment.paid == false %></td>
+          <td><%= installment.date_of_payment.blank? ? '-' : installment.date_of_payment %></td>
         </tr>
       <% end %>
     </tbody>

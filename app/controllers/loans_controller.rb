@@ -35,12 +35,18 @@ class LoansController < ApplicationController
     redirect_to loans_path
   end
 
-  private
-    def set_loan
-      @loan = Loan.find(params[:id])
-    end
+  def pay_installment
+    @loan_installment = LoanInstallment.find(params[:id])
+    @loan_installment.update(paid: true)
+  end
 
-    def loan_params
-      params.require(:loan).permit(:requested_amount, :qtd_payments, :interest_rate)
-    end
+  private
+
+  def set_loan
+    @loan = Loan.find(params[:id])
+  end
+
+  def loan_params
+    params.require(:loan).permit(:requested_amount, :qtd_payments, :interest_rate)
+  end
 end

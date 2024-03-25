@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_03_23_143010) do
+ActiveRecord::Schema[7.1].define(version: 2024_03_25_220232) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -22,6 +22,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_23_143010) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.datetime "due_date", null: false
+    t.datetime "date_of_payment"
     t.index ["loan_id"], name: "index_loan_installments_on_loan_id"
   end
 
