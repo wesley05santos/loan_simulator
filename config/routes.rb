@@ -16,6 +16,8 @@ Rails.application.routes.draw do
   get 'toggle_user_admin', to: 'users#toggle_user_admin'
   put 'pay_installment', to: 'loans#pay_installment'
 
+  resources :payments, only: %i[new create]
+
   resources :loans
   resources :loans_requests
   resources :users
