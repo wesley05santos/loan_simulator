@@ -1,0 +1,26 @@
+<hr>
+<h2>Parcelas</h2>
+<hr>
+
+<table>
+  <thead>
+    <th>Número da Parcela</th>
+    <th>Valor da Parcela</th>
+    <th>Data de Vencimento</th>
+    <th>Status de Pagamento</th>
+    <th>Ações</th>
+    <th>Data do Pagamento</th>
+  </thead>
+  <tbody>
+    <% @loan.loan_installments.sort.each do |installment| %>
+      <tr>
+        <td><%= installment.number_of_installment %></td>
+        <td>R$ <%= installment.value_installment.round(2) %></td>
+        <td><%= installment.due_date.strftime("%d-%m-%Y") %></td>
+        <td><%= installment.paid %></td>
+        <td><%= link_to 'Pagar', new_payment_path(installment_id: installment.id) if installment.paid == false %></td>
+        <td><%= installment.payment&.date_of_payment.blank? ? '-' : installment.payment.date_of_payment.strftime("%d-%m-%Y %H:%M") %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

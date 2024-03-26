@@ -35,11 +35,6 @@ class LoansController < ApplicationController
     redirect_to loans_path
   end
 
-  def pay_installment
-    @loan_installment = LoanInstallment.find(params[:id])
-    @loan_installment.update(paid: true)
-  end
-
   private
 
   def set_loan

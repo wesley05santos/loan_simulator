@@ -14,7 +14,6 @@ Rails.application.routes.draw do
   get 'approve_loan', to: 'loans_requests#approve_loan'
   get 'reject_loan', to: 'loans_requests#reject_loan'
   get 'toggle_user_admin', to: 'users#toggle_user_admin'
-  put 'pay_installment', to: 'loans#pay_installment'
 
   resources :payments, only: %i[new create]
 

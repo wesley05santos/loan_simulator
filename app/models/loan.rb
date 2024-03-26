@@ -1,6 +1,7 @@
 class Loan < ApplicationRecord
   belongs_to :user
-  has_many :loan_installment, dependent: :destroy
+  has_many :loan_installments, dependent: :destroy
+  has_many :payment
 
   validates :requested_amount, presence: true
   validates :qtd_payments, presence: true

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_03_25_220232) do
+ActiveRecord::Schema[7.1].define(version: 2024_03_26_221146) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -22,7 +22,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_25_220232) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.datetime "due_date", null: false
-    t.datetime "date_of_payment"
     t.index ["loan_id"], name: "index_loan_installments_on_loan_id"
   end
 
@@ -36,6 +35,18 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_25_220232) do
     t.datetime "updated_at", null: false
     t.string "status", default: "", null: false
     t.index ["user_id"], name: "index_loans_on_user_id"
+  end
+
+  create_table "payments", force: :cascade do |t|
+    t.bigint "loan_id", null: false
+    t.bigint "loan_installment_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "date_of_payment", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["loan_id"], name: "index_payments_on_loan_id"
+    t.index ["loan_installment_id"], name: "index_payments_on_loan_installment_id"
+    t.index ["user_id"], name: "index_payments_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -53,4 +64,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_25_220232) do
 
   add_foreign_key "loan_installments", "loans"
   add_foreign_key "loans", "users"
+  add_foreign_key "payments", "loan_installments"
+  add_foreign_key "payments", "loans"
+  add_foreign_key "payments", "users"
 end

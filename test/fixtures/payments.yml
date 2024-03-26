@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  loan: one
+  loan_installment: one
+  user: one
+  date_of_payment: 2024-03-26 19:11:46
+
+two:
+  loan: two
+  loan_installment: two
+  user: two
+  date_of_payment: 2024-03-26 19:11:46

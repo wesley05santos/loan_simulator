@@ -1,13 +1,15 @@
 <%= form_with url: payments_path do |form| %>
+  <%= form.hidden_field :installment_id, value: @installment_id %>
   <label class="amount">
-    <span>Amount: R$5.00</span>
+    <span>Valor: R$<%= LoanInstallment.find(@installment_id).value_installment %></span>
   </label>
 
   <script
     src="https://checkout.stripe.com/checkout.js" class="stripe-button"
     data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
     data-description="A month's subscription"
-    data-amount="500"
+    data-amount="<%= (LoanInstallment.find(@installment_id).value_installment * 100).to_i %>"
+    data-currency="brl"
     data-locale="auto">
   </script>
 <% end %>
